@@ -154,7 +154,7 @@ public class BacSiController {
 	}
 
 	private BacSiDAO bacSiDAO = new BacSiDAO();
-
+// demo
 	@RequestMapping(value = "/suathongtin", method = RequestMethod.POST)
 	public void suaThongTin(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
 			throws IOException, ParseException {

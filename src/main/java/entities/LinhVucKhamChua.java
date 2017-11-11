@@ -16,10 +16,11 @@ import javax.persistence.Table;
 @Table(name = "linh_vuc_kham_chua")
 public class LinhVucKhamChua {
     private int maLinhVuc;
-    private int tenLinhVuc;
+    private String tenLinhVuc;
     private String moTa;
 
-    public LinhVucKhamChua(int maLinhVuc, int tenLinhVuc, String moTa) {
+    // sua doi kieu dl
+    public LinhVucKhamChua(int maLinhVuc, String tenLinhVuc, String moTa) {
         this.maLinhVuc = maLinhVuc;
         this.tenLinhVuc = tenLinhVuc;
         this.moTa = moTa;
@@ -36,11 +37,11 @@ public class LinhVucKhamChua {
         this.maLinhVuc = maLinhVuc;
     }
 
-    public int getTenLinhVuc() {
+    public String getTenLinhVuc() {
         return tenLinhVuc;
     }
 
-    public void setTenLinhVuc(int tenLinhVuc) {
+    public void setTenLinhVuc(String tenLinhVuc) {
         this.tenLinhVuc = tenLinhVuc;
     }
 
