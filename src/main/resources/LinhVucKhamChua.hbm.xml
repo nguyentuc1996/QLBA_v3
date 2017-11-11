@@ -9,7 +9,7 @@
             <column name="ma_linh_vuc" />
             <generator class="identity" />
         </id>
-
+<!-- sua doi kieu dl -->
         <property name="tenLinhVuc" type="string">
             <column name="ten_linh_vuc" />
         </property>

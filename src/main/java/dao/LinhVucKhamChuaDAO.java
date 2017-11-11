@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import Util.HibernateUtil;
 import entities.LinhVucKhamChua;
 import entities.ThongSoSucKhoe;
-
+// lvkc
 public class LinhVucKhamChuaDAO {
 	// them
 	public void themLinhVucKhamChua(LinhVucKhamChua linhVucKhamChua) {

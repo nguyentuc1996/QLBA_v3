@@ -19,6 +19,7 @@ public class LinhVucKhamChua {
     private String tenLinhVuc;
     private String moTa;
 
+    // sua doi kieu dl
     public LinhVucKhamChua(int maLinhVuc, String tenLinhVuc, String moTa) {
         this.maLinhVuc = maLinhVuc;
         this.tenLinhVuc = tenLinhVuc;

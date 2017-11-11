@@ -157,6 +157,7 @@ public class AdminController {
 		return "admin/AD";
 	}
 
+	// linh vuc kham chua
 	@RequestMapping(value = "/linh_vuc_kham_chua", method = RequestMethod.GET)
 	public String linhVucKhamChua(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
 			throws IOException {
