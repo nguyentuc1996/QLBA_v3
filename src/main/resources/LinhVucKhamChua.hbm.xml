@@ -10,7 +10,7 @@
             <generator class="identity" />
         </id>
 
-        <property name="tenLinhVuc" type="int">
+        <property name="tenLinhVuc" type="string">
             <column name="ten_linh_vuc" />
         </property>
         <property name="moTa" type="string">

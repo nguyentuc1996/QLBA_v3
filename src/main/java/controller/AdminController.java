@@ -23,10 +23,13 @@ import entities.Admin;
 //import com.nimbusds.oauth2.sdk.Request;
 
 import entities.BacSi;
+import entities.BenhAn;
 import entities.BenhNhan;
+import entities.LinhVucKhamChua;
 import dao.AdminDAO;
 import dao.BacSiDAO;
 import dao.BenhNhanDAO;
+import dao.LinhVucKhamChuaDAO;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -35,6 +38,7 @@ public class AdminController {
 	private BacSiDAO bacSiDAO = new BacSiDAO();
 	private AdminDAO adminDAO = new AdminDAO();
 	private BenhNhanDAO benhNhanDAO = new BenhNhanDAO();
+	private LinhVucKhamChuaDAO linhVucKhamChuaDAO = new LinhVucKhamChuaDAO();
 
 	private boolean isAdmin(HttpServletRequest request, HttpServletResponse response, ModelMap mm) throws IOException {
 		HttpSession session = request.getSession();
@@ -151,6 +155,67 @@ public class AdminController {
 			mm.put("ad", admin);
 		}
 		return "admin/AD";
+	}
+
+	@RequestMapping(value = "/linh_vuc_kham_chua", method = RequestMethod.GET)
+	public String linhVucKhamChua(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
+			throws IOException {
+		String action = request.getParameter("action");
+		if (action.equalsIgnoreCase("them")) {
+			// String ma_benh_nhan = request.getParameter("ma_benh_nhan");
+			// mm.put("ma_benh_nhan", ma_benh_nhan);
+			return "them_linh_vuc";
+
+		} else if (action.equalsIgnoreCase("xoa")) {
+			String ma_linh_vuc = request.getParameter("ma_linh_vuc");
+			linhVucKhamChuaDAO.xoaLinhVucKhamChua(Integer.parseInt(ma_linh_vuc));
+			mm.put("danh_sach_linh_vuc", linhVucKhamChuaDAO.layDanhSachLinhVucKhamChua());
+			return "quan_ly_benh_an";
+
+		} else if (action.equalsIgnoreCase("chi_tiet")) {
+			String ma_linh_vuc = request.getParameter("ma_linh_vuc");
+			mm.put("linh_vuc_kham_chua", linhVucKhamChuaDAO.chiTietLinhVucKhamChua(Integer.parseInt(ma_linh_vuc)));
+			return "chi_tiet_linh_vuc";
+		} else {
+			// sua linh vuc kham chua
+			String ma_linh_vuc = request.getParameter("ma_linh_vuc");
+			mm.put("ma_linh_vuc", ma_linh_vuc);
+			return "sua_linh_vuc";
+		}
+	}
+
+	// them benh an
+	@RequestMapping(value = "them_linh_vuc", method = RequestMethod.POST)
+	public String themBenhAn(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
+			throws ParseException, IOException {
+
+		String tenLinhVuc = request.getParameter("tenLinhVuc");
+		String moTa = request.getParameter("moTa");
+		LinhVucKhamChua linhVucKhamChua = new LinhVucKhamChua();
+		linhVucKhamChua.setTenLinhVuc(tenLinhVuc);
+		linhVucKhamChua.setMoTa(moTa);
+		linhVucKhamChuaDAO.themLinhVucKhamChua(linhVucKhamChua);
+		mm.put("danh_sach_linh_vuc", linhVucKhamChuaDAO.layDanhSachLinhVucKhamChua());
+		// response.sendRedirect(request.getContextPath() +
+		// "/user/home_certificate.html?userID=" + userID);
+		return "quan_ly_linh_vuc";
+	}
+
+	// sua benh an
+	@RequestMapping(value = "sua_linh_vuc_kham_chua", method = RequestMethod.POST)
+	public String suaBenhAn(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
+			throws ParseException, IOException {
+		String maLinhVuc = request.getParameter("maLinhVuc");
+		String tenLinhVuc = request.getParameter("tenLinhVuc");
+		String moTa = request.getParameter("moTa");
+		LinhVucKhamChua linhVucKhamChua = linhVucKhamChuaDAO.chiTietLinhVucKhamChua(Integer.parseInt(maLinhVuc));
+		linhVucKhamChua.setTenLinhVuc(tenLinhVuc);
+		linhVucKhamChua.setMoTa(moTa);
+		linhVucKhamChuaDAO.suaLinhVucKhamChua(linhVucKhamChua);
+		mm.put("danh_sach_linh_vuc", linhVucKhamChuaDAO.layDanhSachLinhVucKhamChua());
+		// response.sendRedirect(request.getContextPath() +
+		// "/user/home_certificate.html?userID=" + userID);
+		return "quan_ly_linh_vuc";
 	}
 
 }
