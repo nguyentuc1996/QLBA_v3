@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "chan_doan")
 public class ChanDoan {
     private int maChanDoan;
-    private int maBenhNhan;
+    private int maBenhAn;
     private String benhChinh;
     private String benhKemTheo;
     private Date ngayChanDoan;
@@ -31,12 +31,12 @@ public class ChanDoan {
         this.maChanDoan = maChanDoan;
     }
 
-    public int getMaBenhNhan() {
-        return maBenhNhan;
+    public int getMaBenhAn() {
+        return maBenhAn;
     }
 
-    public void setMaBenhNhan(int maBenhNhan) {
-        this.maBenhNhan = maBenhNhan;
+    public void setMaBenhAn(int maBenhAn) {
+        this.maBenhAn = maBenhAn;
     }
 
     public String getBenhChinh() {
@@ -65,7 +65,7 @@ public class ChanDoan {
 
     public ChanDoan(int maChanDoan, int maBenhNhan, String benhChinh, String benhKemTheo, Date ngayChanDoan) {
         this.maChanDoan = maChanDoan;
-        this.maBenhNhan = maBenhNhan;
+        this.maBenhAn = maBenhNhan;
         this.benhChinh = benhChinh;
         this.benhKemTheo = benhKemTheo;
         this.ngayChanDoan = ngayChanDoan;

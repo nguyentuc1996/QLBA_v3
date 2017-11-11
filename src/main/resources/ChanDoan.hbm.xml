@@ -10,8 +10,8 @@
             <generator class="identity" />
         </id>
 
-        <property name="maBenhNhan" type="string">
-            <column name="ma_benh_nhan" />
+        <property name="maBenhAn" type="int">
+            <column name="ma_benh_an" />
         </property>
         <property name="benhChinh" type="string">
             <column name="benh_chinh" />
