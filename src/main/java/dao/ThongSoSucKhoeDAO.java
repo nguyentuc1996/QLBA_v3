@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import Util.HibernateUtil;
 import entities.BenhNhan;
@@ -25,7 +26,7 @@ public class ThongSoSucKhoeDAO {
 			session.close();
 		}
 	}
-	
+
 	// sua
 	public void suaThongSoSucKhoe(ThongSoSucKhoe thongSoSucKhoe) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -41,7 +42,7 @@ public class ThongSoSucKhoeDAO {
 			session.close();
 		}
 	}
-	
+
 	// xoa
 	public void xoaThongSoSucKhoe(Integer maThongSoSucKhoe) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -75,7 +76,21 @@ public class ThongSoSucKhoeDAO {
 		}
 		return thongSoSucKhoe;
 	}
-
+	public ThongSoSucKhoe layThongSoSucKhoeCuaBenhNhan(int maBenhNhan) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		ThongSoSucKhoe thongSoSucKhoe = new ThongSoSucKhoe();
+		try {
+			transaction = session.beginTransaction();
+			thongSoSucKhoe = (ThongSoSucKhoe) session.createCriteria(ThongSoSucKhoe.class).add(Restrictions.eq("maBenhNhan", maBenhNhan));
+			System.out.println(" Get OK");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return thongSoSucKhoe;
+	}
 	// get danh sach thong so suc khoe
 
 		public ArrayList<ThongSoSucKhoe> layDanhSachThongSoSucKhoe() {

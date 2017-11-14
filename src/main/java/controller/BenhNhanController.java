@@ -18,14 +18,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import dao.BenhNhanDAO;
+import dao.ThongSoSucKhoeDAO;
 import entities.Admin;
 import entities.BenhNhan;
+import entities.ThongSoSucKhoe;
 
 @Controller
 @RequestMapping(value = "/benhnhan")
 public class BenhNhanController {
 	private BenhNhanDAO benhNhanDAO = new BenhNhanDAO();
-
+	private ThongSoSucKhoeDAO thongSoSucKhoeDAO= new ThongSoSucKhoeDAO();
 	private boolean isBenhNhan(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
 			throws IOException {
 		HttpSession session = request.getSession();
@@ -95,4 +97,55 @@ public class BenhNhanController {
 		}
 		return "benhnhan/BN";
 	}
+
+//
+	@RequestMapping(value="/themthongsosuckhoe",method=RequestMethod.POST)
+		public void themThongSoSucKhoe(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
+				throws IOException, ParseException{
+			String maBanGhi=request.getParameter("maBanGhi");
+			String maBenhNhan=request.getParameter("maBenhNhan");
+			String mach=request.getParameter("mach");
+			String nhietDo=request.getParameter("nhietDo");
+			String huyetAp=request.getParameter("huyetAp");
+			String nhipTho=request.getParameter("nhipTho");
+			String canNang=request.getParameter("canNang");
+			String ngay=request.getParameter("ngay");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			// surround below line with try catch block as below code throws
+			// checked
+			// exception
+//			Date ngaySinh = sdf.parse(ngaySinhStr);
+			ThongSoSucKhoe thongSoSucKhoe = new ThongSoSucKhoe(Integer.parseInt(maBanGhi),Integer.parseInt(maBenhNhan),Integer.parseInt(mach),Integer.parseInt(nhietDo),Integer.parseInt(huyetAp),Integer.parseInt(nhipTho),Integer.parseInt(canNang),sdf.parse(ngay));
+			thongSoSucKhoeDAO.themThongSoSucKhoe(thongSoSucKhoe);
+		}
+
+
+		@RequestMapping(value="thongsosuckhoe", method = RequestMethod.GET)
+		public String xemThongSo(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
+				throws IOException, ParseException{
+			String maBenhNhan = request.getParameter("maBenhNhan");
+			ThongSoSucKhoe thongSoSucKhoe = thongSoSucKhoeDAO.layThongSoSucKhoeCuaBenhNhan(Integer.parseInt(maBenhNhan));
+			return "thongsosuckhoe";
+		}
+
+		@RequestMapping(value="capnhatthongsosuckhoer",method = RequestMethod.POST)
+		public void capNhatThongSoSucKhoe(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
+				throws IOException, ParseException{
+					String maBanGhi=request.getParameter("maBanGhi");
+					String maBenhNhan=request.getParameter("maBenhNhan");
+					String mach=request.getParameter("mach");
+					String nhietDo=request.getParameter("nhietDo");
+					String huyetAp=request.getParameter("huyetAp");
+					String nhipTho=request.getParameter("nhipTho");
+					String canNang=request.getParameter("canNang");
+					String ngay=request.getParameter("ngay");
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					// surround below line with try catch block as below code throws
+					// checked
+					// exception
+//					Date ngaySinh = sdf.parse(ngaySinhStr);
+					ThongSoSucKhoe thongSoSucKhoe = new ThongSoSucKhoe(Integer.parseInt(maBanGhi),Integer.parseInt(maBenhNhan),Integer.parseInt(mach),Integer.parseInt(nhietDo),Integer.parseInt(huyetAp),Integer.parseInt(nhipTho),Integer.parseInt(canNang),sdf.parse(ngay));
+					thongSoSucKhoeDAO.suaThongSoSucKhoe(thongSoSucKhoe);
+		}
+
 }
