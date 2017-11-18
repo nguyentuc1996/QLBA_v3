@@ -78,10 +78,7 @@ public class ThongSoSucKhoeDAO {
 		}
 		return thongSoSucKhoe;
 	}
-<<<<<<< HEAD
 
-	// get thong so suc khoe theo ma benh nhan
-=======
 	public ThongSoSucKhoe layThongSoSucKhoeCuaBenhNhan(int maBenhNhan) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
@@ -97,8 +94,7 @@ public class ThongSoSucKhoeDAO {
 		}
 		return thongSoSucKhoe;
 	}
-	// get danh sach thong so suc khoe
->>>>>>> branch 'master' of https://github.com/nguyentuc1996/QLBA_v3.git
+
 
 	public ArrayList<ThongSoSucKhoe> layDanhSachThongSoSucKhoeTheoBenhNhan(int id) {
 		// get danh sach benh an theo ma benh nhan
