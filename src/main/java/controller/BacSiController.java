@@ -27,6 +27,7 @@ import entities.ChanDoan;
 import dao.ChungChiDAO;
 
 import entities.ChungChi;
+
 @Controller
 @RequestMapping(value = "/bacsi")
 public class BacSiController {
@@ -35,7 +36,6 @@ public class BacSiController {
 	private BenhNhanDAO benhNhanDAO = new BenhNhanDAO();
 	private LinhVucKhamChuaDAO linhVucKhamChuaDAO = new LinhVucKhamChuaDAO();
 	ChanDoanDAO chanDoanDAO = new ChanDoanDAO();
-	private ChungChiDAO chungChiDAO = new ChungChiDAO();
 
 	private boolean isBacSi(HttpServletRequest request, HttpServletResponse response, ModelMap mm) throws IOException {
 		HttpSession session = request.getSession();
@@ -284,7 +284,7 @@ public class BacSiController {
 			String moTa = request.getParameter("moTa");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			ChungChi chungChi = new ChungChi(maBacSi, tenChungChi, sdf.parse(ngayNhan), sdf.parse(ngayHetHan), moTa);
-			chungChiDAO.themChungChi(chungChi);
+//			chungChiDAO.themChungChi(chungChi);
 		}
 	}
 
@@ -303,7 +303,7 @@ public class BacSiController {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			ChungChi chungChi = new ChungChi(Integer.parseInt(maChungChi), maBacSi, tenChungChi, sdf.parse(ngayNhan),
 					sdf.parse(ngayHetHan), moTa);
-			chungChiDAO.suaChungChi(chungChi);
+//			chungChiDAO.suaChungChi(chungChi);
 		}
 	}
 
@@ -314,7 +314,7 @@ public class BacSiController {
 			BacSi bacSi = (BacSi) session.getAttribute("bs");
 			int maBacSi = bacSi.getMaBacSi();
 			String maChungChi = request.getParameter("maChungChi");
-			chungChiDAO.xoaChungChi(Integer.parseInt(maChungChi), maBacSi);
+//			chungChiDAO.xoaChungChi(Integer.parseInt(maChungChi), maBacSi);
 		}
 	}
 
@@ -322,8 +322,8 @@ public class BacSiController {
 	public String xemChungChi(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
 			throws IOException {
 		String maBacSi = request.getParameter("maBacSi");
-		List<ChungChi> list = chungChiDAO.xemChungChi(Integer.parseInt(maBacSi));
-		mm.put("chungChi", list);
+//		List<ChungChi> list = chungChiDAO.xemChungChi(Integer.parseInt(maBacSi));
+//		mm.put("chungChi", list);
 		return "chungchi";
 	}
 }

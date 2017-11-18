@@ -32,6 +32,13 @@ public class ChungChi {
         this.ngayHetHan = ngayHetHan;
         this.moTa = moTa;
     }
+    public ChungChi( int maBacSy, String tenChungChi, Date ngayNhan, Date ngayHetHan, String moTa) {
+        this.maBacSy = maBacSy;
+        this.tenChungChi = tenChungChi;
+        this.ngayNhan = ngayNhan;
+        this.ngayHetHan = ngayHetHan;
+        this.moTa = moTa;
+    }
 
     public ChungChi() {
     }
@@ -83,6 +90,6 @@ public class ChungChi {
     public void setMoTa(String moTa) {
         this.moTa = moTa;
     }
-    
-    
+
+
 }

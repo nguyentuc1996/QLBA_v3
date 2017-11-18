@@ -28,7 +28,7 @@ import entities.ThongSoSucKhoe;
 public class BenhNhanController {
 	private BenhNhanDAO benhNhanDAO = new BenhNhanDAO();
 	private ThongSoSucKhoeDAO thongSoSucKhoeDAO = new ThongSoSucKhoeDAO();
-
+	
 	private boolean isBenhNhan(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
 			throws IOException {
 		HttpSession session = request.getSession();
@@ -129,7 +129,7 @@ public class BenhNhanController {
 		return "thongsosuckhoe";
 	}
 
-	@RequestMapping(value = "capnhatthongsosuckhoer", method = RequestMethod.POST)
+	@RequestMapping(value = "capnhatthongsosuckhoe", method = RequestMethod.POST)
 	public void capNhatThongSoSucKhoe(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
 			throws IOException, ParseException {
 		String maBanGhi = request.getParameter("maBanGhi");
@@ -150,4 +150,5 @@ public class BenhNhanController {
 				Integer.parseInt(canNang), sdf.parse(ngay));
 		thongSoSucKhoeDAO.suaThongSoSucKhoe(thongSoSucKhoe);
 	}
+
 }
