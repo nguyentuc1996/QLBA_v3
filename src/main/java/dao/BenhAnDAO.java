@@ -113,7 +113,34 @@ public class BenhAnDAO {
 			session.close();
 		}
 		return list;
-	}
+	}	
 	
+	public ArrayList<BenhAn> layDanhSachBenhAnTheoBacSi(int maBacSi){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		ArrayList<BenhAn> list = null;
+		try {
+			transaction = session.beginTransaction();
+			String hql = "SELECT BA FROM BenhAn BA"
+					+ " Where  BA.maNguoiTao =:id";			
+			Query query = session.createQuery(hql);
+			query.setParameter("id", maBacSi);
+			list =  (ArrayList<BenhAn>) query.getResultList();// lay phan tu dau cua mang
+			System.out.println(" Get OK");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}	
+	
+//	
+//		public static void main(String[]args){
+//			BenhAnDAO benhAnDAO= new BenhAnDAO();
+//			for(BA_BN_LV c:benhAnDAO.layDanhSachBenhAnTheoBacSi(1)){
+//				System.out.println(c.getMaBenhAn());
+//			}
+//		}
 
 }

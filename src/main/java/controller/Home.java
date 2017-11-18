@@ -66,7 +66,7 @@ public class Home {
 		session.setMaxInactiveInterval(900);// max thoi gian session la 900
 		if (vaiTro.equalsIgnoreCase("admin")) {
 			Admin admin = adminDAO.dangNhap(taiKhoan, matKhau);
-			if (admin == null) {
+			if (admin == null) {// sai tai khoan mat khau
 				return "login";
 			} else {
 				session.setAttribute("ad", admin);

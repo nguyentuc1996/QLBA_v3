@@ -2,6 +2,8 @@ package dao;
 
 import java.util.ArrayList;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -25,7 +27,7 @@ public class ThongSoSucKhoeDAO {
 			session.close();
 		}
 	}
-	
+
 	// sua
 	public void suaThongSoSucKhoe(ThongSoSucKhoe thongSoSucKhoe) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -41,7 +43,7 @@ public class ThongSoSucKhoeDAO {
 			session.close();
 		}
 	}
-	
+
 	// xoa
 	public void xoaThongSoSucKhoe(Integer maThongSoSucKhoe) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -76,16 +78,28 @@ public class ThongSoSucKhoeDAO {
 		return thongSoSucKhoe;
 	}
 
-	// get danh sach thong so suc khoe
+	// get thong so suc khoe theo ma benh nhan
 
-		public ArrayList<ThongSoSucKhoe> layDanhSachThongSoSucKhoe() {
-			Session session=HibernateUtil.getSessionFactory().openSession();
-			Transaction transaction= null;
-			ArrayList<ThongSoSucKhoe> list =null;
-			transaction= session.beginTransaction();
-			list = (ArrayList<ThongSoSucKhoe>) session.createCriteria(ThongSoSucKhoe.class).list();
-			System.out.println("Get list OK");
+	public ArrayList<ThongSoSucKhoe> layDanhSachThongSoSucKhoeTheoBenhNhan(int id) {
+		// get danh sach benh an theo ma benh nhan
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		ArrayList<ThongSoSucKhoe> list = null;
+		try {
+			transaction = session.beginTransaction();
+			String hql = "SELECT TSSK FROM ThongSoSucKhoe TSSK" + " Where  TSSK.maBenhNhan =:id";
+			Query query = session.createQuery(hql);
+			query.setParameter("id", id);
+			list = (ArrayList<ThongSoSucKhoe>) query.getResultList();// lay phan
+																		// tu
+			// dau
+			// cua mang
+			System.out.println(" Get OK");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
 			session.close();
-			return list;
 		}
+		return list;
+	}
 }

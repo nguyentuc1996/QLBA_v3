@@ -19,7 +19,7 @@
         <property name="benhKemTheo" type="string">
             <column name="benh_kem_theo" />
         </property>
-        <property name="ngayChanDoan" type="string">
+        <property name="ngayChanDoan" type="date">
             <column name="ngay_chan_doan" />
         </property>            
     </class>
